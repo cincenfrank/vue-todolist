@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="js/script.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h3>ToBooList</h3>
+        </div>
+    </header>
+    <main>
+        <div class="container" id="vueApp">
+            <h1>Hello Vueoolean - Todolist</h1>
+            <div class="input_row d-flex">
+                <input type="color" class=" form-control-color me-2" v-model="newTaskColor">
+                <input type="text" class=" form-control me-2" placeholder="I want to..." v-model="newTaskText"
+                    @keyup.enter="onAddClicked">
+                <div class="add_button btn btn-outline-info flex-shrink-0" @click="onAddClicked">Add Task</div>
+            </div>
+            <div class="todo_list_container ">
+                <div class="todo_tile border rounded rounded-3 overflow-hidden my-3" v-for="todo,i in todoList">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col flex-grow-0 align-self-stretch">
+                            <div class="color_tag" :style="`background-color: ${todo.color}`"></div>
+                        </div>
+                        <div class="col flex-grow-1">
+                            <h5 class="title" :class="todo.done? 'text-decoration-line-through':''">{{todo.title}}</h5>
+                        </div>
+                        <div class="col flex-grow-0">
+                            <input type="checkbox" class=" form-check-input" v-model="todo.done">
+                        </div>
+                        <div class="col flex-grow-0">
+                            <i class=" delete p-3 fas fa-times" @click="onDeleteClicked(i)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+</body>
+
+</html>
